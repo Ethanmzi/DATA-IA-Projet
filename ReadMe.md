@@ -1,44 +1,44 @@
-# 🚉 Prédiction de l'Affluence dans les Transports Publics (IA & Data)
+# 🚉 Prédiction de l'Affluence dans les Transports Publics (IA)
 
-Ce projet vise à modéliser et prédire l'affluence horaire dans les stations de transport (Métro/RER) en fonction de paramètres temporels et contextuels. 
+Ce projet complet de Data Science vise à modéliser, analyser et prédire l'affluence horaire dans les stations du réseau ferré (Métro et RER) en utilisant des données réelles et du Machine Learning.
 
 ## 🎯 Objectifs du Projet
-1. **Analyse de données** : Traitement des données réelles de trafic (Open Data RATP 2021).
-2. **Data Augmentation** : Simulation d'un dataset temporel dynamique (cycles horaires, jours de la semaine).
-3. **Machine Learning** : Entraînement d'un modèle capable de prédire l'affluence future.
-4. **Visualisation** : Création d'un dashboard interactif pour l'aide à la décision.
+1. **Nettoyage de Données** : Ordonner et structurer les données Open Data RATP 2021.
+2. **Analyse de Données (EDA)** : Identifier les pôles majeurs par ville et arrondissement.
+3. **Simulation Temporelle** : Créer un dataset dynamique (pics horaires, météo, weekends).
+4. **Machine Learning** : Prédire l'affluence via un modèle Random Forest.
+5. **Déploiement** : Interface utilisateur interactive avec Streamlit.
 
 ## 🛠️ Stack Technique
-* **Langage** : Python 3.9 (Environnement Anaconda)
-* **Data Science** : Pandas, Numpy
-* **Machine Learning** : Scikit-Learn (Random Forest Regressor)
+* **Langage** : Python 3.9 (Distribution Anaconda)
+* **Traitement de données** : Pandas, Numpy
 * **Visualisation** : Matplotlib, Seaborn
-* **Interface / Dashboard** : Streamlit
+* **Intelligence Artificielle** : Scikit-Learn (Random Forest Regressor)
+* **Dashboard** : Streamlit
 
-## 📊 Fonctionnement du Modèle
-Le modèle prend en entrée 5 variables clés :
-- **L'ID de la station** (encodé via LabelEncoder)
-- **L'heure de la journée** (0-23h)
-- **Le jour de la semaine** (0=Lundi, 6=Dimanche)
-- **Le type de jour** (Ouvré ou Week-end)
-- **La météo** (0=Beau temps, 1=Intempéries)
+## 📁 Structure du Projet
+* `trafic_2021_ordonne.csv` : Base de données nettoyée et classée par rang de fréquentation.
+* `generate_data.py` : Script générant le trafic horaire simulé sur 30 jours.
+* `dataset_pret_pour_ml.csv` : Dataset final utilisé pour l'entraînement de l'IA.
+* `app.py` : Application Streamlit (le Dashboard interactif).
 
-Le modèle utilise une **Forêt Aléatoire (Random Forest)** pour capturer les relations non-linéaires, notamment les pics d'affluence du matin et du soir.
 
-## 🚀 Installation et Lancement
 
-1. **Cloner le projet** :
+## 📊 Analyse des Données
+Grâce au prétraitement, le projet permet de consulter les données par catégories directement dans Jupyter :
+- **Top Villes** : Visualisation des pôles de banlieue (ex: Puteaux, Saint-Denis).
+- **Top Arrondissements** : Identification des zones névralgiques parisiennes (10ème, 8ème, 1er).
+- **Profils Horaires** : Distinction claire entre les pics "travail" (semaine) et les pics "loisirs" (weekend).
+
+
+
+## 🚀 Installation et Utilisation
+
+1. **Initialiser l'environnement** :
    ```bash
-   git clone <ton-lien-github-ici>
-   cd projet-ia-transports
+   conda activate projet_transport
 
-
-2. **Installer les dépendances** :
-
-    ```Bash
-
-    pip install pandas scikit-learn streamlit matplotlib seaborn
-
+2. **Générer les données et entraîner le modèle** : Exécuter les cellules du notebook ou le script de simulation pour créer `dataset_pret_pour_ml.csv` .
 
 3. **Lancer le Dashboard** :
 
@@ -47,10 +47,14 @@ Le modèle utilise une **Forêt Aléatoire (Random Forest)** pour capturer les r
     streamlit run app.py
 
 
-## 📈 Résultats
+## 📈 Résultats du Modèle
 
-**Précision du modèle (R²)**: ~0.98 (sur données simulées).
+Le modèle Random Forest atteint une précision (R²) supérieure à 0.95, permettant d'anticiper avec précision les besoins en transport selon :
 
-**Interface** : Dashboard dynamique permettant de tester des scénarios "What-if" (ex: influence de la pluie un dimanche après-midi).
+L'heure de la journée (gestion des heures de pointe).
 
-Projet réalisé dans le cadre d'une étude sur l'Intelligence Artificielle appliquée à la Smart City.
+Le jour de la semaine (semaine vs weekend).
+
+Les conditions météo (impact de la pluie sur le trafic).
+
+Projet réalisé par Ethan et Mayles - Apprenant en Data & IA
